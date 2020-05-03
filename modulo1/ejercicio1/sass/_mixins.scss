@@ -1,0 +1,16 @@
+@function lighten-box($color, $amount) {
+  @return lighten($color, $amount);
+}
+
+@function darken-box($color, $amount) {
+  @return darken($color, $amount);
+}
+
+@mixin color-palette($color, $index) {
+  .lighten-#{$index} {
+    background-color: lighten-box($color, $index * 10);
+  }
+  .darken-#{$index} {
+    background-color: darken-box($color, $index * 10);
+  }
+}

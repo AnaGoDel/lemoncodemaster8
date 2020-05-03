@@ -1,0 +1,10 @@
+$color-base: red;
+$color-important: darkred;
+$color-warning: lighten(red, 50%);
+$radius-size: 0px;
+$principal-font: "Courier New", Courier, monospace;
+$secondary-font: "Times New Roman", Times, serif;
+
+@mixin shadow-type {
+    box-shadow: -20px 20px 10px grey;
+}

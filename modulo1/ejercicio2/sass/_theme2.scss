@@ -1,0 +1,10 @@
+$color-base: blue;
+$color-important: darkblue;
+$color-warning: lighten(blue, 50%);
+$radius-size: 5px;
+$principal-font: Arial, Helvetica, sans-serif;
+$secondary-font: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+
+@mixin shadow-type {
+    box-shadow: 20px 20px 10px grey;
+}

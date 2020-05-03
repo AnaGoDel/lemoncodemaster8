@@ -1,0 +1,54 @@
+// • Color
+// • Fuente
+// • Border Radius
+// • Shadow Box
+
+// @import "theme1.scss";
+@import "theme2.scss";
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $principal-font;
+}
+
+span {
+    margin: 10px;
+}
+
+.flex-container {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 2rem;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: $radius-size;
+}
+
+.base {
+    background-color: $color-base;
+}
+
+.important {
+    background-color: $color-important;
+}
+
+.warning {
+    background-color: $color-warning;
+}
+
+.shadow {
+    @include shadow-type;
+}
+
+.text {
+    margin: 10px;
+}
+
+.secondary-font {
+    font-family: $secondary-font;
+}
