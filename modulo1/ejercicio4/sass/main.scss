@@ -1,26 +1,34 @@
+@import "colors.scss";
+@import "mixins.scss";
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  @include reset-margin-padding;
+  font-family: "Dancing Script";
+  background: linear-gradient(-180deg, $bg-color, $bg-color-sec);
 }
 
 h2 {
-  margin: 0;
+  @include reset-margin-padding;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $font-color;
 }
 
 .container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  grid-gap: 1em;
-  height: auto;
-  padding: 1em;
-  background-color: lightcyan;
+  grid-gap: 1rem;
+  padding: 1rem;
 }
 
 .card {
+  display: grid;
   border: 2px solid black;
-  background-color: whitesmoke;
+  background-color: $bg-color-card;
 }
 
 .item {
@@ -33,29 +41,32 @@ h2 {
 
 .content {
   min-height: 150px;
-  text-align: justify;
 }
 
 .date {
   text-align: right;
-  margin-left: 0;
+  align-self: end;
   :nth-child(1) {
     font-weight: bold;
   }
   :nth-child(2) {
-    color: cadetblue;
+    color: $bg-color-emp;
   }
 }
 
-button {
-  width: 100%;
-  height: 50px;
-  color: white;
-  font-size: 18px;
-  background-color: skyblue;
-  border-radius: 1rem;
-  &:hover {
-    background-color: cadetblue;
-    cursor: pointer;
+.more {
+  align-self: end;
+  button {
+    width: 100%;
+    height: 2.5rem;
+    font-family: "Dancing Script";
+    font-weight: bold;
+    color: $font-color;
+    background-color: $bg-color;
+    border-radius: 1rem;
+    &:hover {
+      background-color: $bg-color-emp;
+      cursor: pointer;
+    }
   }
 }

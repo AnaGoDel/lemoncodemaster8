@@ -1,14 +1,30 @@
+@mixin shadow-type($top, $left, $blur) {
+  box-shadow: $top $left $blur grey;
+}
+
 @mixin color-boxes($base, $important, $warning) {
   .base {
-    background-color: $color-base;
+    background-color: $base;
   }
 
   .important {
-    background-color: $color-important;
+    background-color: $important;
   }
 
   .warning {
-    background-color: $color-warning;
+    background-color: $warning;
+  }
+}
+
+@mixin font-texts($principal, $secondary, $color) {
+  .principal-font {
+    font-family: $principal;
+    border: 2px solid $color;
+  }
+
+  .secondary-font {
+    font-family: $secondary;
+    border: 2px solid $color;
   }
 }
 

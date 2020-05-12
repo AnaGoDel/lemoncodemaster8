@@ -5,18 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modulo 1 - Layout - Ejercicio 2</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./sass/styles.scss">
 </head>
 
 <body>
-    <div class="flex-container">
-        <div class="box base"><span>Base</span></div>
-        <div class="box important"><span>Important</span></div>
-        <div class="box warning"><span>Warning</span></div>
-        <div class="text principal-font"><span>Principal font</span></div>
-        <div class="text secondary-font"><span>Secondary font</span></div>
-        <div class="box shadow"><span>Box with shadow</span></div>
+    <div class="header">
+        <p class="title">Switching Themes!</p>
+        <div class="click-me"> <button id="btn">CLICK ME!</button></div>
     </div>
+    <div id="theme" class="container theme-a">
+        <div class="item base"><span>Base</span></div>
+        <div class="item important"><span>Important</span></div>
+        <div class="item warning"><span>Warning</span></div>
+        <div class="item principal-font"><span>Principal font</span></div>
+        <div class="item secondary-font"><span>Secondary font</span></div>
+        <div class="item shadow"><span>Box with shadow</span></div>
+    </div>
+    <script src="./index.js"></script>
 </body>
 
 </html>
