@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "ejercicio1": "parcel ejercicio1/index.html",
+    "ejercicio2": "parcel ejercicio2/index.html",
+    "ejercicio3": "parcel ejercicio3/index.html",
+    "ejercicio4": "parcel ejercicio4/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.26.5"
+  }
 }
