@@ -1,0 +1,18 @@
+@mixin color-boxes($base, $important, $warning) {
+  .base {
+    background-color: $color-base;
+  }
+
+  .important {
+    background-color: $color-important;
+  }
+
+  .warning {
+    background-color: $color-warning;
+  }
+}
+
+@mixin border-style($size) {
+  border: 1px solid black;
+  border-radius: $size;
+}

@@ -1,0 +1,24 @@
+$themes: (
+  a: (
+    color-base: limegreen,
+    color-important: darkolivegreen,
+    color-warning: darkseagreen,
+    principal-font: "Playfair Display",
+    secondary-font: "Dancing Script",
+    radius-size: 0px,
+    top: -20px,
+    left: 20px,
+    blur: 10px,
+  ),
+  b: (
+    color-base: royalblue,
+    color-important: blue,
+    color-warning: lightseagreen,
+    principal-font: Impact,
+    secondary-font: "Open Sans",
+    radius-size: 1rem,
+    top: 20px,
+    left: 20px,
+    blur: 10px,
+  ),
+);
