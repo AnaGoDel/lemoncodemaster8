@@ -1,3 +1,7 @@
-/node_modules
-/dist
-/.cache
+# node dependencies
+node_modules/
+package-lock.json
+
+# parcel build
+dist/
+.cache/
