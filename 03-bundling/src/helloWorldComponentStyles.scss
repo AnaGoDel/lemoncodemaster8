@@ -1,5 +1,14 @@
-$background: teal;
+$background: gold;
+$main-font-family: sans-serif;
+
+.hello-text {
+  display: flex;
+  justify-content: center;
+}
 
 .result-background {
+  font-family: $main-font-family;
+  font-size: 3rem;
   background-color: $background;
+  border: solid 1px black;
 }

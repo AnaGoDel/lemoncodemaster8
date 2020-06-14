@@ -1,5 +1,14 @@
-$background: red;
+$background: lemonChiffon;
+$main-font-family: sans-serif;
+
+.date-text {
+  display: flex;
+  justify-content: center;
+}
 
 .result-background {
+  font-family: $main-font-family;
+  font-size: 1rem;
+  margin: 0.5rem;
   background-color: $background;
 }

@@ -1,9 +1,9 @@
 import React from "react";
 const classes = require("./helloWorldComponentStyles.scss");
 
-export const HelloWorldComponent = () => {
+export const HelloWorldComponent: React.FC = () => {
   return (
-    <div>
+    <div className={classes.helloText}>
       <span className={classes.resultBackground}>Hello World!</span>
     </div>
   );

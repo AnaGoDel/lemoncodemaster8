@@ -7,25 +7,24 @@ const basePath = __dirname;
 module.exports = {
     context: path.join(basePath, 'src'),
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: [".js", ".ts", ".tsx"]
     },
     entry: {
-        app: "./index.jsx",
+        app: "./index.tsx",
         appStyles: [
             "./styles.scss",
         ],
     },
     output: {
-        filename: '[name].[chunkhash].js',
+        filename: './js/[name].[chunkhash].js',
     },
-    stats: "errors-only",
     devServer: {
         stats: "errors-only",
     },
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             },
@@ -63,6 +62,10 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'url-loader?limit=5000',
             },
+            {
+                test: /\.html$/,
+                loader: 'html-loader',
+            },
         ],
     },
     plugins: [
@@ -72,7 +75,7 @@ module.exports = {
             hash: true,
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].css",
+            filename: "./css/[name].css",
             chunkFilename: "[id].css"
         }),
     ],
