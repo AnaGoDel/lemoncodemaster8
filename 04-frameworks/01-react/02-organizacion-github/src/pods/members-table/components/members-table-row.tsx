@@ -1,5 +1,5 @@
 import React from "react";
-import { MemberEntity } from "../member.vm";
+import { MemberEntity } from "../members.vm";
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 

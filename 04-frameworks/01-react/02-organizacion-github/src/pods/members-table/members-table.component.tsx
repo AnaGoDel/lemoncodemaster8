@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { MemberEntity } from "./member.vm";
-import { MemberTableRow, MemberTableHead } from "./components";
-import { Pagination } from '../members-pagination/pagination';
-import { getMembersAPI, isNextPageAvailable } from "./api";
+import { MemberEntity } from "./members.vm";
+import { mapMembersListFromApiToViewModel } from './members.mapper';
+import { getMembersAPI, getLastPageAPI } from "./api";
+import { MemberTableRow, MemberTableHead, PaginationMembersList } from "./components";
 import { makeStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -22,16 +22,24 @@ export const MemberTable = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
   const [organizationName, setOrganizationName] = React.useState<string>("lemoncode");
   const [currentPage, setCurrentPage] = React.useState<number>(1);
-  const [nextAvailable, setNextAvailable] = React.useState<boolean>(true);
+  const [lastPage, setLastPage] = React.useState<number>(1);
 
-  const loadMembers = (page) => {
-    getMembersAPI(organizationName)(page).then(members => setMembers(members));
-    isNextPageAvailable(organizationName, page + 1).then(res => setNextAvailable(res));
+  const getMembersPage = (page) => {
+    getMembersAPI(organizationName)(page).then(membersList => {
+      const viewModelMembersList = mapMembersListFromApiToViewModel(membersList);
+      setMembers(viewModelMembersList);
+    });
   };
+
+  const onLoadMembers = () => {
+    setCurrentPage(1);
+    getMembersPage(1);
+    getLastPageAPI(organizationName).then(lastPage => setLastPage(lastPage));
+  }
 
   React.useEffect(() => {
     if (organizationName != "") {
-      loadMembers(currentPage);
+      getMembersPage(currentPage);
     }
   }, [currentPage]);
 
@@ -48,15 +56,14 @@ export const MemberTable = () => {
 
       <Button
         variant="contained"
-        onClick={() => (currentPage === 1) ? loadMembers(currentPage) : setCurrentPage(1)}>
+        onClick={onLoadMembers}>
         Load
       </Button>
-      <h1>{currentPage}</h1>
-      <h1>lastPage: {nextAvailable}</h1>
-      <Pagination
-        page={currentPage}
-        onChangePage={setCurrentPage}
-        nextAvailable={nextAvailable}
+
+      <PaginationMembersList
+        currentPage={currentPage}
+        onChangeCurrentPage={setCurrentPage}
+        lastPage={lastPage}
       />
 
       <TableContainer>

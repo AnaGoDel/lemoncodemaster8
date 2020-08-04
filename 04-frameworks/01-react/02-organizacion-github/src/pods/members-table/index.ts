@@ -1,2 +1,3 @@
 export * from './members-table.component';
-export * from './member.vm'; 
+export * from './members.vm';
+export * from './members.mapper';
