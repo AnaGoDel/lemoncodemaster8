@@ -15,7 +15,7 @@ module.exports = {
   devtool: "eval-source-map",
   stats: "errors-only",
   output: {
-    filename: "[name].[chunkhash].js",
+    filename: "./js/[name].[chunkhash].js",
   },
   module: {
     rules: [
@@ -38,13 +38,28 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader",
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                exportLocalsConvention: 'camelCase',
+              },
+            },
+          },
           {
             loader: "sass-loader",
             options: {
               implementation: require("sass")
             }
           },
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader"
         ]
       },
     ],
@@ -56,7 +71,7 @@ module.exports = {
       template: "index.html", //Name of template in ./src
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: "./css/[name].css",
       chunkFilename: "[id].css"
     }),
   ],

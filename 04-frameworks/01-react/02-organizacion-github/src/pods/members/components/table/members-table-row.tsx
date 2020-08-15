@@ -1,5 +1,5 @@
 import React from "react";
-import { MemberEntity } from "../members.vm";
+import { MemberEntity } from "../../members.vm";
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
@@ -7,7 +7,7 @@ interface Props {
   member: MemberEntity;
 }
 
-export const MemberTableRow: React.FC<Props> = (props) => {
+export const TableRowMembersList: React.FC<Props> = (props) => {
   const { member } = props;
 
   return (

@@ -1,0 +1,15 @@
+$main-color: rgb(208, 27, 91);
+
+.pagination-content {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  color: $main-color;
+}
+
+.pagination {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0 1.5rem 0 1.5rem;
+}

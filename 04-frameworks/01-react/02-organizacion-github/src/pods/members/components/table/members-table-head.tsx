@@ -3,7 +3,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
-export const MemberTableHead: React.FC = () => {
+export const TableHeadMembersList: React.FC = () => {
     return (
         <TableHead>
             <TableRow>

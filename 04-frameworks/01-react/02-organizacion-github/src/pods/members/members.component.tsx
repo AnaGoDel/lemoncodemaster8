@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { MemberEntity } from "./members.vm";
 import { mapMembersListFromApiToViewModel } from './members.mapper';
 import { getMembersAPI, getLastPageAPI } from "./api";
-import { MemberTableRow, MemberTableHead, PaginationMembersList } from "./components";
+import { Header } from "./components/header";
+import { TableRowMembersList, TableHeadMembersList, PaginationMembersList } from "./components/table";
 import { makeStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
 import { Table } from "@material-ui/core";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+const classes = require("./styles.scss");
 
 const useStyles = makeStyles({
   table: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 });
 
 export const MemberTable = () => {
-  const classes = useStyles();
+  const classesUI = useStyles();
 
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
   const [organizationName, setOrganizationName] = React.useState<string>("lemoncode");
@@ -45,20 +45,13 @@ export const MemberTable = () => {
 
   return (
     <div>
-      <TextField
-        label="Organization"
-        id="outlined-size-small"
-        defaultValue={organizationName}
-        variant="outlined"
-        size="small"
-        onChange={e => setOrganizationName(e.target.value)}
-      />
+      <h1 className={classes.mainTitle}>ORGANIZATION MEMBERS API GITHUB</h1>
 
-      <Button
-        variant="contained"
-        onClick={onLoadMembers}>
-        Load
-      </Button>
+      <Header
+        organizationName={organizationName}
+        onChangeOrganizationName={setOrganizationName}
+        loadMembers={onLoadMembers}
+      />
 
       <PaginationMembersList
         currentPage={currentPage}
@@ -67,11 +60,11 @@ export const MemberTable = () => {
       />
 
       <TableContainer>
-        <Table className={classes.table} aria-label="simple table">
-          <MemberTableHead />
+        <Table className={classesUI.table} aria-label="simple table">
+          <TableHeadMembersList />
           <TableBody>
             {members.map((member) => (
-              <MemberTableRow key={member.id} member={member} />
+              <TableRowMembersList key={member.id} member={member} />
             ))}
           </TableBody>
         </Table>
