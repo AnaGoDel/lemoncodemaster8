@@ -1,0 +1,10 @@
+.page-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+.page-main {
+    flex: 3 60rem;
+}
+.page-sidebar {
+    flex: 1 20rem;
+}
