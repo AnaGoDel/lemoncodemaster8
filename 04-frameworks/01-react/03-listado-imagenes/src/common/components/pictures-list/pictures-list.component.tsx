@@ -7,23 +7,8 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-    },
-    gridList: {
-        width: 500,
-        height: 450,
-    },
-    icon: {
-        color: 'white',
-    },
-}));
+import { Typography } from '@material-ui/core';
+const classes = require("./pictures-list.styles.scss");
 
 interface Props {
     list: PictureInfoVM[];
@@ -36,38 +21,32 @@ export const PicturesListComponent: React.FC<Props> = ({
     title,
     onCheckPicture,
 }) => {
-    const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <GridList cellHeight={180} className={classes.gridList}>
-                <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                    <ListSubheader component="div">{title}</ListSubheader>
-                </GridListTile>
+        <>
+            <Typography variant="h6">{title}</Typography>
+            <div className={classes.picturesContainer}>
                 {list.map((item) => (
-                    <GridListTile key={item.id}>
-                        <img src={item.picUrl} alt={item.title} />
-                        <GridListTileBar
-                            title={item.title}
-                            actionIcon={
-                                <FormControlLabel
-                                    className={classes.icon}
-                                    control={
-                                        <Checkbox
-                                            id={item.id}
-                                            checked={item.selected}
-                                            onChange={onCheckPicture}
-                                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                                        />
-                                    }
-                                    label="Buy"
-                                />
-
-                            }
-                        />
-                    </GridListTile>
+                    <div className={classes.pictureCard} key={item.id}>
+                        <img className={classes.pictureImg} src={item.picUrl} alt={item.title} />
+                        <div className={classes.pictureSubheader}>
+                            <Typography>{item.title}</Typography>
+                            <FormControlLabel
+                                className={classes.icon}
+                                control={
+                                    <Checkbox
+                                        id={item.id}
+                                        checked={item.selected}
+                                        onChange={onCheckPicture}
+                                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                                    />
+                                }
+                                label="Buy"
+                            />
+                        </div>
+                    </div>
                 ))}
-            </GridList>
-        </div>
+            </div>
+        </>
     );
 };

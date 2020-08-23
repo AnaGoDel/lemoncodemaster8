@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { switchRoutes } from './routes';
-import { CatsListScene, DogsListScene } from 'scenes';
+import { CatsListScene, DogsListScene, CheckOutScene } from 'scenes';
 
 export const RouterComponent: React.FC = () => {
     return (
@@ -15,6 +15,10 @@ export const RouterComponent: React.FC = () => {
                     exact={true}
                     path={switchRoutes.dogs}
                     component={DogsListScene} />
+                <Route
+                    exact={true}
+                    path={switchRoutes.checkout}
+                    component={CheckOutScene} />
             </Switch>
         </Router>
     )
