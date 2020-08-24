@@ -23,16 +23,15 @@ export const PicturesListComponent: React.FC<Props> = ({
 }) => {
 
     return (
-        <>
+        <main>
             <Typography variant="h6">{title}</Typography>
-            <div className={classes.picturesContainer}>
+            <section className={classes.picturesContainer}>
                 {list.map((item) => (
-                    <div className={classes.pictureCard} key={item.id}>
+                    <article key={item.id}>
                         <img className={classes.pictureImg} src={item.picUrl} alt={item.title} />
-                        <div className={classes.pictureSubheader}>
-                            <Typography>{item.title}</Typography>
+                        <h1 className={classes.pictureSubheader}>
+                            <Typography variant="button">{item.title}</Typography>
                             <FormControlLabel
-                                className={classes.icon}
                                 control={
                                     <Checkbox
                                         id={item.id}
@@ -43,10 +42,10 @@ export const PicturesListComponent: React.FC<Props> = ({
                                 }
                                 label="Buy"
                             />
-                        </div>
-                    </div>
+                        </h1>
+                    </article>
                 ))}
-            </div>
-        </>
+            </section>
+        </main>
     );
 };

@@ -1,10 +1,9 @@
 import React from 'react';
-import { getDogsList } from './api';
-import { PictureInfo, PictureInfoVM, AppBarComponent, PicturesListComponent } from 'common/components';
+import { PictureInfo, PictureInfoVM } from 'common/components';
 import { mapPicturesListFromApiToViewModel } from 'common/mappers';
-import { MyContext } from 'pods/context';
-import { CartComponent } from 'pods/cart/cart.component';
-const classes = require("./dogs-list.styles.scss");
+import { MyContext } from 'common/context';
+import { getDogsList } from './api';
+import { DogsListComponent } from './dogs-list.component';
 
 export const DogsListContainer: React.FunctionComponent = () => {
     const [dogsList, setDogsList] = React.useState<PictureInfoVM[]>([]);
@@ -42,21 +41,11 @@ export const DogsListContainer: React.FunctionComponent = () => {
     }, [myContext.picturesCart]);
 
     return (
-        <>
-            <AppBarComponent />
-            <div className={classes.pageContent}>
-                <div className={classes.pageMain}>
-                    <PicturesListComponent
-                        list={dogsList}
-                        title='Dogs'
-                        onCheckPicture={handleCheckDog}
-                    />
-                </div>
-                {myContext.cartVisible &&
-                    <div className={classes.pageSidebar}>
-                        <CartComponent />
-                    </div>}
-            </div>
-        </>
+        <DogsListComponent
+            list={dogsList}
+            title="Dogs"
+            onCheckPicture={handleCheckDog}
+            cartVisible={myContext.cartVisible}
+        />
     );
 }

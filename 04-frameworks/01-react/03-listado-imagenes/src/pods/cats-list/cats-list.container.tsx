@@ -1,12 +1,11 @@
 import React from 'react';
-import { PictureInfo, PictureInfoVM, AppBarComponent, PicturesListComponent } from 'common/components';
+import { PictureInfo, PictureInfoVM } from 'common/components';
 import { getCatsList } from './api';
 import { mapPicturesListFromApiToViewModel } from 'common/mappers';
-import { MyContext } from 'pods/context';
-import { CartComponent } from 'pods/cart/cart.component';
-const classes = require("./cats-list.styles.scss");
+import { MyContext } from 'common/context';
+import { CatsListComponent } from './cats-list.component';
 
-export const CatsListContainer: React.FunctionComponent = () => {
+export const CatsListContainer: React.FC = () => {
     const [catsList, setCatsList] = React.useState<PictureInfoVM[]>([]);
     const myContext = React.useContext(MyContext);
 
@@ -40,21 +39,11 @@ export const CatsListContainer: React.FunctionComponent = () => {
     }, [myContext.picturesCart]);
 
     return (
-        <>
-            <AppBarComponent />
-            <div className={classes.pageContent}>
-                <div className={classes.pageMain}>
-                    <PicturesListComponent
-                        list={catsList}
-                        title='Cats'
-                        onCheckPicture={handleCheckCat}
-                    />
-                </div>
-                {myContext.cartVisible &&
-                    <div className={classes.pageSidebar}>
-                        <CartComponent />
-                    </div>}
-            </div>
-        </>
+        <CatsListComponent
+            list={catsList}
+            title="Cats"
+            onCheckPicture={handleCheckCat}
+            cartVisible={myContext.cartVisible}
+        />
     );
 }
