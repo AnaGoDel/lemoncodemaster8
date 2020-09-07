@@ -1,0 +1,10 @@
+<header>
+  <nav class="header-container">
+    <div class="logo">
+      <img [src]="urlLogo" alt="logo lemoncode" />
+      <h4>Miniapp Angular</h4>
+    </div>
+    <app-public-menu *ngIf="!userLogged()"></app-public-menu>
+    <app-private-menu *ngIf="userLogged()"></app-private-menu>
+  </nav>
+</header>
