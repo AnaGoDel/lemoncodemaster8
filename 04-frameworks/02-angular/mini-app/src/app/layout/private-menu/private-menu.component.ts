@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./private-menu.component.scss']
 })
 export class PrivateMenuComponent implements OnInit {
-  onPrivateMenu = false;
   username: string;
 
   constructor(private service: AuthService) { }

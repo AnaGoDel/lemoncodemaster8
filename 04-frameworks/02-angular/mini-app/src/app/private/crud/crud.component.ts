@@ -1,27 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/service/auth.service';
-import { CanActivate, Router } from '@angular/router';
+import { CrudService } from 'src/app/service/crud.service';
+import { CrudEntity } from 'src/app/model/crudEntity';
 
 @Component({
   selector: 'app-crud',
   templateUrl: './crud.component.html',
   styleUrls: ['./crud.component.scss']
 })
-export class CrudComponent implements OnInit, CanActivate {
+export class CrudComponent implements OnInit {
+  crudMembers: CrudEntity[] = [];
+  crud: CrudEntity;
+  columns: string[] = ['id', 'login', 'avatar_url'];
 
-  constructor(private service: AuthService, private router: Router) { }
+  searchValue = '';
 
-  ngOnInit(): void {
+  constructor(private service: CrudService) {
+    service.getAll().subscribe(
+      json => this.crudMembers = json
+    );
   }
-
-  canActivate(): boolean {
-    // If the user is not logged in we'll send them back to the home page
-    if (!this.service.isLogged()) {
-      console.log('No estás logueado');
-      this.router.navigate(['/']);
-      return false;
-    }
-    return true;
+  ngOnInit(): void {
   }
 
 }
