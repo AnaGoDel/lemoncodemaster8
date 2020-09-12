@@ -1,1 +1,43 @@
-<p>gallery works!</p>
+<section class="gallery-page">
+  <div class="gallery-container">
+    <div class="picture-selected">
+      <img [src]="selectedPic.src" [alt]="selectedPic.title" [height]="selectedPicWidth">
+      <div class="btn-zoom">
+        <button mat-icon-button aria-label="Zoom in" (click)="zoom_in()">
+          <mat-icon>zoom_in</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="Zoom out" (click)="zoom_out()">
+          <mat-icon>zoom_out</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="btn-gallery">
+      <button mat-icon-button aria-label="Previous" (click)="previousPic()" [disabled]="selectedPicIndex === 0">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Play" *ngIf="!isPlaying" (click)="play()">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Stop" *ngIf="isPlaying" (click)="stop()">
+        <mat-icon>stop</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Next" (click)="nextPic()"
+        [disabled]="selectedPicIndex === pictureList.length - 1">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
+
+    <div class="gallery-list">
+      <button mat-icon-button aria-label="Previous" (click)="previousRow()" [disabled]="rowStart === 0">
+        Previous
+      </button>
+      <div (click)="select(picture)" *ngFor="let picture of pictureList | slice:rowStart:rowStart+3 let i =   index">
+        <img [src]=" picture.src" [alt]="picture.title" [ngClass]="{selected: selectedPicIndex === rowStart+i}">
+      </div>
+      <button mat-icon-button aria-label=" Next" (click)="nextRow()" [disabled]="rowStart+3 >= pictureList.length - 1">
+        Next
+      </button>
+    </div>
+  </div>
+</section>

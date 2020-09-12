@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+$main-color: rgb(217, 217, 0);
 
 html,
 body {
@@ -42,7 +42,7 @@ body {
     }
   }
   .selected {
-    background-color: rgb(217, 217, 0);
+    background-color: $main-color;
     border-radius: 10px;
   }
 }
