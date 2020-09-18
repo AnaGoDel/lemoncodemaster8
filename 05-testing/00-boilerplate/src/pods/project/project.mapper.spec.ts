@@ -75,7 +75,7 @@ describe('pods/project/project.mapper specs', () => {
     // Act
     const result = mapProjectFromApiToVm(project);
 
-    //Assert
+    // Assert
     expect(result).toEqual(expectedResult);
   });
 
@@ -114,7 +114,7 @@ describe('pods/project/project.mapper specs', () => {
     // Act
     const result = mapProjectFromApiToVm(project);
 
-    //Assert
+    // Assert
     expect(result).toEqual(expectedResult);
   });
 });
