@@ -26,7 +26,7 @@ describe('pods/project/project.mapper specs', () => {
   });
 
   it('should return expected result when feeding null employee list', () => {
-    // Assert
+    // Arrange
     const project: apiModel.Project = {
       id: 'test id',
       name: 'test name',
@@ -53,7 +53,7 @@ describe('pods/project/project.mapper specs', () => {
   });
 
   it('should return expected result when feeding undefined employee list', () => {
-    // Assert
+    // Arrange
     const project: apiModel.Project = {
       id: 'test id',
       name: 'test name',
@@ -80,7 +80,7 @@ describe('pods/project/project.mapper specs', () => {
   });
 
   it('should return expected result but feeding correct values', () => {
-    // Assert
+    // Arrange
     const project: apiModel.Project = {
       id: 'test id',
       name: 'test name',
