@@ -5,7 +5,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 
 describe('Confirmation dialog component spec', () => {
   it('should display dialog when isOpen is true', () => {
-    // Asset
+    // Arrange
     const props = {
       isOpen: true,
       onAccept: jest.fn(),
@@ -27,7 +27,7 @@ describe('Confirmation dialog component spec', () => {
   });
 
   it('should not display dialog when isOpen is false', () => {
-    // Asset
+    // Arrange
     const props = {
       isOpen: false,
       onAccept: jest.fn(),
@@ -49,7 +49,7 @@ describe('Confirmation dialog component spec', () => {
   });
 
   it('should call onAccept property when it clicks on Accept button', () => {
-    // Asset
+    // Arrange
     const props = {
       isOpen: true,
       onAccept: jest.fn(),
@@ -74,8 +74,8 @@ describe('Confirmation dialog component spec', () => {
     expect(props.onAccept).toHaveBeenCalled();
   });
 
-  it('should call onClose property when it clicks on Cancel button', () => {
-    // Asset
+  it('should call onClose property when it clicks on cancek button', () => {
+    // Arrange
     const props = {
       isOpen: true,
       onAccept: jest.fn(),
