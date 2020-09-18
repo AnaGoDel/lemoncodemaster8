@@ -21,9 +21,25 @@ describe('Confirmation dialog component spec', () => {
     render(<ConfirmationDialogComponent {...props} />);
 
     const dialogElement = screen.getByRole('dialog');
+    const titleElement = screen.getByText('Test title');
+    const acceptButtonElement = screen.getByRole('button', {
+      name: 'Test accept button',
+    });
+    const cancelButtonElement = screen.getByRole('button', {
+      name: 'Test close button',
+    });
 
     // Assert
     expect(dialogElement).toBeInTheDocument();
+
+    expect(titleElement).toBeInTheDocument();
+    expect(titleElement.tagName).toBe('H2');
+
+    expect(acceptButtonElement).toBeInTheDocument();
+    expect(acceptButtonElement.tagName).toBe('BUTTON');
+
+    expect(cancelButtonElement).toBeInTheDocument();
+    expect(cancelButtonElement.tagName).toBe('BUTTON');
   });
 
   it('should not display dialog when isOpen is false', () => {
@@ -65,7 +81,7 @@ describe('Confirmation dialog component spec', () => {
     render(<ConfirmationDialogComponent {...props} />);
 
     const acceptButtonElement = screen.getByRole('button', {
-      name: props.labels.acceptButton,
+      name: 'Test accept button',
     });
     userEvent.click(acceptButtonElement);
 
@@ -91,7 +107,7 @@ describe('Confirmation dialog component spec', () => {
     render(<ConfirmationDialogComponent {...props} />);
 
     const closeButtonElement = screen.getByRole('button', {
-      name: props.labels.closeButton,
+      name: 'Test close button',
     });
     userEvent.click(closeButtonElement);
 
