@@ -25,12 +25,14 @@ export const LoginFormComponent: React.FunctionComponent<Props> = props => {
             name="user"
             label={`${literals.components.fields.user} *`}
             variant="outlined"
+            id="login-user"
           />
           <TextFieldComponent
             name="password"
             label={`${literals.components.fields.password} *`}
             type="password"
             variant="outlined"
+            id="login-password"
           />
           <Button
             type="submit"
