@@ -21,7 +21,7 @@
       "name": "Burlingame"
     }
   ],
-  "hotels": [
+  "characters": [
     {
       "id": "1",
       "type": "hotel",
@@ -46,7 +46,7 @@
       "locationDescription": "Near Pike Place Market",
       "lowRate": 259,
       "metadata": {
-        "path": "/hotels/1"
+        "path": "/hotels/1  "
       },
       "postalCode": 98101,
       "propertyCategory": 1,
