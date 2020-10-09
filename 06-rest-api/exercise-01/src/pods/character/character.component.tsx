@@ -9,12 +9,11 @@ import Avatar from '@material-ui/core/Avatar';
 
 interface Props {
   character: Character;
-  locations: Lookup[];
   onSave: (character: Character) => void;
 }
 
 export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
-  const { character, locations, onSave } = props;
+  const { character, onSave } = props;
 
   return (
     <Formik

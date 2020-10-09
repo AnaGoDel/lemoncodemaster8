@@ -6,19 +6,17 @@ import { mapCharacterFromVmToApi, mapCharacterFromApiToVm } from './character.ma
 import { Lookup } from 'common/models';
 import { CharacterComponent } from './character.component';
 
+interface GetParams {
+  id: string,
+}
+
 export const CharacterContainer: React.FunctionComponent = (props) => {
   const [character, setCharacter] = React.useState<Character>(createEmptyCharacter());
-  const [locations, setLocations] = React.useState<Lookup[]>([]);
-  const { id } = useParams();
+  const { id } = useParams<GetParams>();
   const history = useHistory();
 
-  const handleLoadCityCollection = async () => {
-    const apiLocations = await api.getLocations();
-    setLocations(apiLocations);
-  };
-
   const handleLoadCharacter = async () => {
-    const apiCharacter = await api.getCharacter(id);
+    const apiCharacter = await api.getCharacter(+id);
     setCharacter(mapCharacterFromApiToVm(apiCharacter));
   };
 
@@ -26,7 +24,6 @@ export const CharacterContainer: React.FunctionComponent = (props) => {
     if (id) {
       handleLoadCharacter();
     }
-    handleLoadCityCollection();
   }, []);
 
   const handleSave = async (character: Character) => {
@@ -39,5 +36,5 @@ export const CharacterContainer: React.FunctionComponent = (props) => {
     }
   };
 
-  return <CharacterComponent character={character} locations={locations} onSave={handleSave} />;
+  return <CharacterComponent character={character} onSave={handleSave} />;
 };

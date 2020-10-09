@@ -19,7 +19,7 @@ export const RouterComponent: React.FunctionComponent = () => {
         />
         <Route
           exact={true}
-          path={switchRoutes.editCharacter}
+          path={switchRoutes.detailCharacter}
           component={CharacterScene}
         />
       </Switch>
