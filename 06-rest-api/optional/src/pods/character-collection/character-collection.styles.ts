@@ -7,6 +7,11 @@ export const root = css`
   }
 `;
 
+export const pagination = css`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const list = css`
   display: grid;
   grid-template-columns: repeat(1, 1fr);

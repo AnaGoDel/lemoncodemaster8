@@ -7,18 +7,34 @@ export interface CharacterEntityApi {
   name: string,
   status: string,
   species: string,
-  type: string,
   gender: string,
   origin: {
-    name: string,
-    url: string
+    name: string
   },
   location: {
-    name: string,
-    url: string
+    name: string
   },
   image: string,
-  episode: string[],
-  url: string,
-  created: string,
+}
+
+interface GetCharactersCollectionResponse {
+  results: CharacterEntityApi[];
+}
+
+export interface GetCharactersCollectionResponseGraph {
+  characters: GetCharactersCollectionResponse;
+}
+
+export interface PaginationInfo {
+  pages: number,
+  next: string,
+  prev: string,
+}
+
+interface GetPaginationInfoResponse {
+  info: PaginationInfo;
+}
+
+export interface GetPaginationResponseGraph {
+  characters: GetPaginationInfoResponse;
 }
