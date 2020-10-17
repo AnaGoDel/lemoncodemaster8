@@ -6,15 +6,19 @@ import {
 import { PaginationInfo } from 'common/components';
 import { graphQLClient } from 'core/api';
 
-export const getEpisodesList = async (page): Promise<EpisodeEntityApi[]> => {
+export const getEpisodesList = async (page: number, filter: string): Promise<EpisodeEntityApi[]> => {
   const query = `
     query {
-      episodes(page: ${page}, filter: { }) {
+      episodes(page: ${page}, filter: { name: "${filter}"}) {
         results {
           id
           name
           air_date
           episode
+          characters {
+            name
+            image
+          }
         }
       }
     }
@@ -25,10 +29,10 @@ export const getEpisodesList = async (page): Promise<EpisodeEntityApi[]> => {
   return episodes.results;
 };
 
-export const getPaginationInfo = async (page): Promise<PaginationInfo> => {
+export const getPaginationInfo = async (page: number, filter: string): Promise<PaginationInfo> => {
   const query = `
     query {
-      episodes(page: ${page}, filter: {}) {
+      episodes(page: ${page}, filter: { name: "${filter}"}) {
         info {
           pages
           next

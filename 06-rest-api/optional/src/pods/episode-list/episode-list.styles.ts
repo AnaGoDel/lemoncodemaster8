@@ -9,3 +9,9 @@ export const header = css`
     background-color: smoke;
   }
 `;
+
+export const headerBtn = css`
+  display: flex;
+  justify-content: space-between;
+`;
+

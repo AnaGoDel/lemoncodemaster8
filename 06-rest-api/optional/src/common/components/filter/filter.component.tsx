@@ -5,21 +5,21 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import * as classes from './filter.styles';
 
 interface Props {
-  handleOnFilter: (filter: string) => void;
+  onFilter: (filter: string) => void;
   label: string;
 }
 
 export const FilterComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const { handleOnFilter, label } = props;
+  const { onFilter, label } = props;
 
   return (
     <TextField
       className={classes.root}
       label={label}
       placeholder="Search"
-      onChange={e => handleOnFilter(e.target.value)}
+      onChange={e => onFilter(e.target.value)}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

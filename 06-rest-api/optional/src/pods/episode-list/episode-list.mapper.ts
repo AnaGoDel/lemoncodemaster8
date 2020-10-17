@@ -8,4 +8,6 @@ export const mapFromApiToVm = (
   name: episode.name,
   air_date: episode.air_date,
   episode: `Season ${episode.episode.slice(2, 3)} Episode ${episode.episode.slice(4, 6)}`,
+  characters: episode.characters.map(character => {return { id: character.id, name: character.name, image: character.image }}
+  )
 });

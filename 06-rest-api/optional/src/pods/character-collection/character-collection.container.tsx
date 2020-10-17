@@ -41,7 +41,7 @@ export const CharacterCollectionContainer = () => {
         onNextPage={handleNextPage}
         paginationInfo={paginationInfo}
         currentPage={currentPage}
-        handleOnFilter={handleFilter}
+        onFilter={handleFilter}
         label={'Character name'}
       />
     </>

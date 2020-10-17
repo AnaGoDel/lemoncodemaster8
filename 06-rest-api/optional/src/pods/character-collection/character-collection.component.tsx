@@ -13,7 +13,7 @@ interface Props {
   onPreviousPage: () => void;
   paginationInfo: PaginationInfo;
   currentPage: number;
-  handleOnFilter: (filter: string) => void;
+  onFilter: (filter: string) => void;
   label: string;
 }
 
@@ -27,7 +27,7 @@ export const CharacterCollectionComponent: React.FunctionComponent<Props> = (
     onNextPage,
     paginationInfo,
     currentPage,
-    handleOnFilter,
+    onFilter,
     label
   } = props;
 
@@ -35,7 +35,7 @@ export const CharacterCollectionComponent: React.FunctionComponent<Props> = (
     <>
       <div className={classes.header}>
         <FilterComponent
-          handleOnFilter={handleOnFilter}
+          onFilter={onFilter}
           label={label}
         />
         <PaginationComponent

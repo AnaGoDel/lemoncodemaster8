@@ -1,17 +1,17 @@
 import { PaginationInfo } from 'common/components';
 
+interface Character {
+  id: number,
+  name: string,
+  image: string,
+}
+
 export interface EpisodeEntityApi {
   id: number,
   name: string,
   air_date: string,
   episode: string,
-}
-
-export const CreateEpisodeInitial = {
-  id: 0,
-  name: '',
-  air_date: '',
-  episode: '',
+  characters: Character[],
 }
 
 export interface EpisodesListResponse {
