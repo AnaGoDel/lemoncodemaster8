@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { CharacterEntityVm } from './character-collection.vm';
-import { getCharacterCollection, getPaginationInfo, PaginationInfo } from './api';
+import { getCharacterCollection, getPaginationInfo } from './api';
+import { PaginationInfo } from 'common/components';
 import { mapFromApiToVm } from './character-collection.mapper';
 import { mapToCollection } from 'common/mappers';
 
-export const useCharacterCollection = (page: number) => {
+export const useCharacterCollection = () => {
   const [characterCollection, setCharacterCollection] = React.useState<CharacterEntityVm[]>(
     []
   );
 
-  const loadCharacterCollection = (page: number) => {
-    getCharacterCollection(page).then((result) =>
+  const loadCharacterCollection = (page: number, name: string) => {
+    getCharacterCollection(page, name).then((result) =>
       setCharacterCollection(mapToCollection(result, mapFromApiToVm))
     );
   };
@@ -18,15 +19,15 @@ export const useCharacterCollection = (page: number) => {
   return { characterCollection, loadCharacterCollection };
 };
 
-export const usePaginationInfo = (page: number) => {
+export const usePaginationInfo = () => {
   const [paginationInfo, setPaginationInfo] = React.useState<PaginationInfo>({
     pages: 0,
-    next: 'null',
-    prev: 'null',
+    next: '',
+    prev: '',
   });
 
-  const loadPaginationInfo = (page: number) => {
-    getPaginationInfo(page).then(result => {
+  const loadPaginationInfo = (page: number, name:string) => {
+    getPaginationInfo(page, name).then(result => {
       setPaginationInfo(result)
     });
   };

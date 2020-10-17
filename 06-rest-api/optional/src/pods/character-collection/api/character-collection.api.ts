@@ -3,18 +3,15 @@ import {
   CharacterEntityApi,
   GetCharactersCollectionResponseGraph,
   GetPaginationResponseGraph,
-  PaginationInfo
-
 } from './character-collection.api-model';
+import { PaginationInfo } from 'common/components';
 import { mockCharacterCollection } from './character-collection.mock-data';
 import { graphQLClient } from 'core/api';
 
-let characterCollection = [...mockCharacterCollection];
-
-export const getCharacterCollection = async (page): Promise<CharacterEntityApi[]> => {
+export const getCharacterCollection = async (page: number, name: string): Promise<CharacterEntityApi[]> => {
   const query = `
     query {
-      characters(page: ${page}, filter: {}) {
+      characters(page: ${page}, filter: { name: "${name}" }) {
         results {
           id
           name
@@ -35,13 +32,14 @@ export const getCharacterCollection = async (page): Promise<CharacterEntityApi[]
   const { characters } = await graphQLClient.request<GetCharactersCollectionResponseGraph>(
     query
   );
+  console.log({ characters });
   return characters.results;
 };
 
-export const getPaginationInfo = async (page): Promise<PaginationInfo> => {
+export const getPaginationInfo = async (page: number, name: string): Promise<PaginationInfo> => {
   const query = `
     query {
-      characters(page: ${page}, filter: {}) {
+      characters(page: ${page}, filter: { name: "${name}"}) {
         info {
           pages
           next
@@ -53,6 +51,5 @@ export const getPaginationInfo = async (page): Promise<PaginationInfo> => {
   const { characters } = await graphQLClient.request<GetPaginationResponseGraph>(
     query
   );
-  console.log({ characters });
   return characters.info;
 };

@@ -7,11 +7,6 @@ export const root = css`
   }
 `;
 
-export const pagination = css`
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const list = css`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -28,4 +23,9 @@ export const list = css`
   @media (min-width: ${theme.breakpoints.values.md}px) {
     grid-template-columns: repeat(3, 1fr);
   }
+`;
+
+export const header = css`
+  display: flex;
+  justify-content: space-between;
 `;

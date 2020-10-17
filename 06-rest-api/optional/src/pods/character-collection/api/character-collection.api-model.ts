@@ -1,3 +1,6 @@
+import { common } from "@material-ui/core/colors";
+import { PaginationInfo } from 'common/components'
+
 export interface GetResponse {
   results: CharacterEntityApi[],
 }
@@ -23,12 +26,7 @@ interface GetCharactersCollectionResponse {
 
 export interface GetCharactersCollectionResponseGraph {
   characters: GetCharactersCollectionResponse;
-}
 
-export interface PaginationInfo {
-  pages: number,
-  next: string,
-  prev: string,
 }
 
 interface GetPaginationInfoResponse {

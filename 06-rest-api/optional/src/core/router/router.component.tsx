@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { switchRoutes } from './routes';
-import { CharacterCollectionScene, CharacterScene } from 'scenes';
+import { CharacterCollectionScene, CharacterScene, EpisodeListScene } from 'scenes';
 
 export const RouterComponent: React.FunctionComponent = () => {
   return (
@@ -21,6 +21,11 @@ export const RouterComponent: React.FunctionComponent = () => {
           exact={true}
           path={switchRoutes.detailCharacter}
           component={CharacterScene}
+        />
+        <Route
+          exact={true}
+          path={switchRoutes.episodesList}
+          component={EpisodeListScene}
         />
       </Switch>
     </HashRouter>
