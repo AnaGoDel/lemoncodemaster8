@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { CharacterEntityVm } from './character-collection.vm';
-import { getCharacterCollection, getPaginationInfo } from './api';
-import { PaginationInfo } from 'common/components';
+import { getCharacterCollection } from './api';
 import { mapFromApiToVm } from './character-collection.mapper';
 import { mapToCollection } from 'common/mappers';
 
@@ -17,20 +16,4 @@ export const useCharacterCollection = () => {
   };
 
   return { characterCollection, loadCharacterCollection };
-};
-
-export const usePaginationInfo = () => {
-  const [paginationInfo, setPaginationInfo] = React.useState<PaginationInfo>({
-    pages: 0,
-    next: '',
-    prev: '',
-  });
-
-  const loadPaginationInfo = (page: number, name:string) => {
-    getPaginationInfo(page, name).then(result => {
-      setPaginationInfo(result)
-    });
-  };
-
-  return { paginationInfo, loadPaginationInfo };
 };

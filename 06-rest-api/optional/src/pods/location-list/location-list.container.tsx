@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { EpisodeListComponent } from './episode-list.component';
-import { mapFromApiToVm } from './episode-list.mapper';
-import { getEpisodesList, getPaginationInfo } from './api';
-import { EpisodeEntityVM } from './episode-list.vm';
 import { usePaginationInfo } from 'common/components/pagination';
+import { EpisodeListComponent } from './location-list.component';
+import { mapFromApiToVm } from './location-list.mapper';
+import { getLocationsList, getPaginationInfo } from './api';
+import { LocationEntityVM } from './location-list.vm';
 
-export const EpisodesListContainer = () => {
-  const [episodesList, setEpisodesList] = React.useState<EpisodeEntityVM[]>([]);
+export const LocationListContainer = () => {
+  const [locationsList, setLocationsList] = React.useState<LocationEntityVM[]>([]);
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const { paginationInfo, loadPaginationInfo } = usePaginationInfo(getPaginationInfo);
-  const [episodeName, setEpisodeName] = React.useState<string>('');
+  const [locationName, setLocationName] = React.useState<string>('');
 
   React.useEffect(() => {
-    getEpisodesList(currentPage, episodeName).then(result =>
-      setEpisodesList(result.map(data => mapFromApiToVm(data))));
-    loadPaginationInfo(currentPage, episodeName);
-  }, [currentPage, episodeName]);
+    getLocationsList(currentPage, locationName).then(result =>
+      setLocationsList(result.map(data => mapFromApiToVm(data))));
+    loadPaginationInfo(currentPage, locationName);
+  }, [currentPage, locationName]);
 
   const handlePreviousPage = () => {
     setCurrentPage(+paginationInfo.prev);
@@ -26,19 +26,19 @@ export const EpisodesListContainer = () => {
   };
 
   const handleFilter = (name: string) => {
-    setEpisodeName(name);
+    setLocationName(name);
     setCurrentPage(1);
   }
 
   return (
     <>
       <EpisodeListComponent
-        episodesList={episodesList}
+        locationsList={locationsList}
         onPreviousPage={handlePreviousPage}
         onNextPage={handleNextPage}
         paginationInfo={paginationInfo}
         currentPage={currentPage}
-        label="Episode name"
+        label="Location name"
         onFilter={handleFilter}
       />
     </>

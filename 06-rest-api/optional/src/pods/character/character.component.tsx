@@ -36,10 +36,10 @@ export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
               Species: {character.species}
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
-              Origin: {character.origin}
+              First seen in: {character.origin}
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
-              Location: {character.location}
+              Last known location: {character.location}
             </Typography>
           </Form>
         </div>

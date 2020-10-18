@@ -38,7 +38,7 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
             style={{ height: 0, paddingTop: '56.25%' }}
           />
           <Typography variant="subtitle1" gutterBottom>
-            {character.name} is {character.species.slice(0, 1) === 'A' ? 'an' : 'a'} {character.species.toLowerCase()}, original from {character.origin} and located in {character.location}.
+            {character.name} is {character.species.slice(0, 1) === 'A' ? 'an' : 'a'} {character.species.toLowerCase()}, first seen in {character.origin} and last known location {character.location}.
           </Typography>
         </div>
       </CardContent>

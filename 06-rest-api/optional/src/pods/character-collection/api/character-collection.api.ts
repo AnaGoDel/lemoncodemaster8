@@ -1,11 +1,9 @@
-import Axios from 'axios';
 import {
   CharacterEntityApi,
   GetCharactersCollectionResponseGraph,
   GetPaginationResponseGraph,
 } from './character-collection.api-model';
 import { PaginationInfo } from 'common/components';
-import { mockCharacterCollection } from './character-collection.mock-data';
 import { graphQLClient } from 'core/api';
 
 export const getCharacterCollection = async (page: number, name: string): Promise<CharacterEntityApi[]> => {
@@ -32,7 +30,6 @@ export const getCharacterCollection = async (page: number, name: string): Promis
   const { characters } = await graphQLClient.request<GetCharactersCollectionResponseGraph>(
     query
   );
-  console.log({ characters });
   return characters.results;
 };
 

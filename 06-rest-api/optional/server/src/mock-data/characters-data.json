@@ -1,26 +1,4 @@
 {
-  "cities": [
-    {
-      "id": "Seattle",
-      "name": "Seattle"
-    },
-    {
-      "id": "Chicago",
-      "name": "Chicago"
-    },
-    {
-      "id": "New York",
-      "name": "New York"
-    },
-    {
-      "id": "California",
-      "name": "California"
-    },
-    {
-      "id": "Burlingame",
-      "name": "Burlingame"
-    }
-  ],
   "characters": [
     {
       "id": "1",

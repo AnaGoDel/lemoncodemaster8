@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { PaginationInfo } from 'common/components';
-import { getPaginationInfo } from './api';
 
-export const usePaginationInfo = () => {
+export const usePaginationInfo = (getPaginationInfo: (page:number, filter: string) => Promise<PaginationInfo>) => {
   const [paginationInfo, setPaginationInfo] = React.useState<PaginationInfo>({
     pages: 0,
-    next: 'null',
-    prev: 'null',
+    next: '',
+    prev: '',
   });
 
   const loadPaginationInfo = (page: number, filter: string) => {
