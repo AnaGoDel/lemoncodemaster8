@@ -10,10 +10,16 @@ export const EpisodesListContainer = () => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const { paginationInfo, loadPaginationInfo } = usePaginationInfo(getPaginationInfo);
   const [episodeName, setEpisodeName] = React.useState<string>('');
+  const [noResults, setNoResults] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    getEpisodesList(currentPage, episodeName).then(result =>
-      setEpisodesList(result.map(data => mapFromApiToVm(data))));
+    getEpisodesList(currentPage, episodeName)
+    .then(result =>{
+      setEpisodesList(result.map(data => mapFromApiToVm(data)))
+      setNoResults(false)
+    })
+    .catch(error => setNoResults(true));
+
     loadPaginationInfo(currentPage, episodeName);
   }, [currentPage, episodeName]);
 
@@ -34,6 +40,7 @@ export const EpisodesListContainer = () => {
     <>
       <EpisodeListComponent
         episodesList={episodesList}
+        noResults={noResults}
         onPreviousPage={handlePreviousPage}
         onNextPage={handleNextPage}
         paginationInfo={paginationInfo}

@@ -10,10 +10,15 @@ export const LocationListContainer = () => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const { paginationInfo, loadPaginationInfo } = usePaginationInfo(getPaginationInfo);
   const [locationName, setLocationName] = React.useState<string>('');
+  const [noResults, setNoResults] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    getLocationsList(currentPage, locationName).then(result =>
-      setLocationsList(result.map(data => mapFromApiToVm(data))));
+    getLocationsList(currentPage, locationName)
+      .then(result => {
+        setLocationsList(result.map(data => mapFromApiToVm(data)))
+        setNoResults(false)
+      })
+      .catch(error => setNoResults(true));
     loadPaginationInfo(currentPage, locationName);
   }, [currentPage, locationName]);
 
@@ -34,6 +39,7 @@ export const LocationListContainer = () => {
     <>
       <EpisodeListComponent
         locationsList={locationsList}
+        noResults={noResults}
         onPreviousPage={handlePreviousPage}
         onNextPage={handleNextPage}
         paginationInfo={paginationInfo}

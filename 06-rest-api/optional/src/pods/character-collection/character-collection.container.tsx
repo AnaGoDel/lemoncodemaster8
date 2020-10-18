@@ -5,16 +5,18 @@ import { useCharacterCollection } from './character-collection.hook';
 import { CharacterCollectionComponent } from './character-collection.component';
 import { usePaginationInfo } from 'common/components/pagination';
 import { getPaginationInfo } from './api';
+import { NoResultComponent } from 'common/components';
 
 export const CharacterCollectionContainer = () => {
   const { characterCollection, loadCharacterCollection } = useCharacterCollection();
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const { paginationInfo, loadPaginationInfo } = usePaginationInfo(getPaginationInfo);
   const [characterName, setCharacterName] = React.useState<string>('');
+  const [noResult, setnoResult] = React.useState<boolean>(false);
   const history = useHistory();
 
   React.useEffect(() => {
-    loadCharacterCollection(currentPage, characterName);
+    loadCharacterCollection(currentPage, characterName, setnoResult);
     loadPaginationInfo(currentPage, characterName);
   }, [currentPage, characterName]);
 
@@ -37,16 +39,17 @@ export const CharacterCollectionContainer = () => {
 
   return (
     <>
-      <CharacterCollectionComponent
-        characterCollection={characterCollection}
-        onDetailCharacter={handleDetail}
-        onPreviousPage={handlePreviousPage}
-        onNextPage={handleNextPage}
-        paginationInfo={paginationInfo}
-        currentPage={currentPage}
-        onFilter={handleFilter}
-        label={'Character name'}
-      />
+        <CharacterCollectionComponent
+          characterCollection={characterCollection}
+          noResult={noResult}
+          onDetailCharacter={handleDetail}
+          onPreviousPage={handlePreviousPage}
+          onNextPage={handleNextPage}
+          paginationInfo={paginationInfo}
+          currentPage={currentPage}
+          onFilter={handleFilter}
+          label={'Character name'}
+        />
     </>
   );
 };

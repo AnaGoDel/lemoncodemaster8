@@ -18,8 +18,13 @@ export const createEmptyCharacter = (): Character => ({
   image: '',
 });
 
-export interface Location {
+export interface Quote {
   id: number,
-  name: string,
+  quote: string,
 }
+
+export const createEmptyQuote = (): Quote => ({
+  id: 0,
+  quote: '',
+});
 

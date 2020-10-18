@@ -1,9 +1,8 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import * as api from './api';
-import { createEmptyCharacter, Character } from './character.vm';
+import { createEmptyCharacter, Character, Quote, createEmptyQuote } from './character.vm';
 import { mapCharacterFromVmToApi, mapCharacterFromApiToVm } from './character.mappers';
-import { Lookup } from 'common/models';
 import { CharacterComponent } from './character.component';
 
 interface GetParams {
@@ -12,6 +11,7 @@ interface GetParams {
 
 export const CharacterContainer: React.FunctionComponent = (props) => {
   const [character, setCharacter] = React.useState<Character>(createEmptyCharacter());
+  const [characterQuotes, setCharacterQuotes] = React.useState<Quote>(createEmptyQuote());
   const { id } = useParams<GetParams>();
   const history = useHistory();
 
@@ -20,15 +20,23 @@ export const CharacterContainer: React.FunctionComponent = (props) => {
     setCharacter(mapCharacterFromApiToVm(apiCharacter));
   };
 
+  const handleGetQuotes = (id: number) => {
+    api.getQuotesById(id).then(result => setCharacterQuotes(result));
+  }
+
   React.useEffect(() => {
     if (id) {
       handleLoadCharacter();
     }
   }, []);
 
-  const handleSave = async (character: Character) => {
-    const apiCharacter = mapCharacterFromVmToApi(character);
-    const success = await api.saveCharacter(apiCharacter);
+  React.useEffect(() => {
+    console.log(character);
+    handleGetQuotes(character.id);
+  }, [character])
+
+  const handleSave = async (quotes: Quote) => {
+    const success = await api.saveCharacter(quotes);
     if (success) {
       history.goBack();
     } else {
@@ -36,5 +44,9 @@ export const CharacterContainer: React.FunctionComponent = (props) => {
     }
   };
 
-  return <CharacterComponent character={character} onSave={handleSave} />;
+  return <CharacterComponent
+    character={character}
+    characterQuotes={characterQuotes}
+    onSave={handleSave}
+  />;
 };

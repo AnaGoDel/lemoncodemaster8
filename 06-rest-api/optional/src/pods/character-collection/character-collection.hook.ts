@@ -9,10 +9,13 @@ export const useCharacterCollection = () => {
     []
   );
 
-  const loadCharacterCollection = (page: number, name: string) => {
-    getCharacterCollection(page, name).then((result) =>
-      setCharacterCollection(mapToCollection(result, mapFromApiToVm))
-    );
+  const loadCharacterCollection = (page: number, name: string, setNoResult) => {
+    getCharacterCollection(page, name)
+      .then((result) => {
+        setCharacterCollection(mapToCollection(result, mapFromApiToVm))
+        setNoResult(false);
+      })
+      .catch(error => setNoResult(true));
   };
 
   return { characterCollection, loadCharacterCollection };

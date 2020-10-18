@@ -19,3 +19,8 @@ export interface CharacterEntityApi {
   created: string,
 }
 
+export interface Quote {
+  id: number,
+  quote: string,
+}
+

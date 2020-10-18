@@ -1,13 +1,12 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
 import { CharacterEntityVm } from './character-collection.vm';
-import { PaginationInfo } from 'common/components';
 import { CharacterCard } from './components/character-card.component';
-import { PaginationComponent, FilterComponent } from 'common/components';
+import { PaginationComponent, PaginationInfo, FilterComponent, NoResultComponent } from 'common/components';
 import * as classes from './character-collection.styles';
 
 interface Props {
   characterCollection: CharacterEntityVm[];
+  noResult: boolean;
   onDetailCharacter: (id: number) => void;
   onNextPage: () => void;
   onPreviousPage: () => void;
@@ -22,6 +21,7 @@ export const CharacterCollectionComponent: React.FunctionComponent<Props> = (
 ) => {
   const {
     characterCollection,
+    noResult,
     onDetailCharacter,
     onPreviousPage,
     onNextPage,
@@ -45,15 +45,20 @@ export const CharacterCollectionComponent: React.FunctionComponent<Props> = (
           currentPage={currentPage}
         />
       </div>
-      <div className={classes.root}>
-        <ul className={classes.list}>
-          {characterCollection.map((character) => (
-            <li key={character.id}>
-              <CharacterCard character={character} onDetail={onDetailCharacter} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {!noResult && (
+        <div className={classes.root}>
+          <ul className={classes.list}>
+            {characterCollection.map((character) => (
+              <li key={character.id}>
+                <CharacterCard character={character} onDetail={onDetailCharacter} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {noResult && (
+        <NoResultComponent />
+      )}
     </>
   );
 };

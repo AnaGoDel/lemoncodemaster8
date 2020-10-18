@@ -9,12 +9,13 @@ import {
   TableRow,
 } from "@material-ui/core";
 import { TableRowComponent } from './components/table-row.component';
-import { PaginationComponent, FilterComponent } from 'common/components';
+import { PaginationComponent, FilterComponent, NoResultComponent } from 'common/components';
 import { PaginationInfo } from 'common/components';
 import * as classes from './episode-list.styles';
 
 interface Props {
   episodesList: EpisodeEntityVM[];
+  noResults: boolean;
   onNextPage: () => void;
   onPreviousPage: () => void;
   paginationInfo: PaginationInfo;
@@ -26,6 +27,7 @@ interface Props {
 export const EpisodeListComponent: React.FC<Props> = (props) => {
   const {
     episodesList,
+    noResults,
     onNextPage,
     onPreviousPage,
     paginationInfo,
@@ -48,25 +50,30 @@ export const EpisodeListComponent: React.FC<Props> = (props) => {
           currentPage={currentPage}
         />
       </div>
-      <TableContainer>
-        <Table>
-          <TableHead className={classes.header}>
-            <TableRow>
-              <TableCell align="center">Episode</TableCell>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Air date</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {episodesList.map(episode =>
-              <TableRowComponent
-                key={episode.id}
-                episode={episode}
-              />
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {!noResults && (
+        <TableContainer>
+          <Table>
+            <TableHead className={classes.header}>
+              <TableRow>
+                <TableCell align="center">Episode</TableCell>
+                <TableCell align="center">Name</TableCell>
+                <TableCell align="center">Air date</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {episodesList.map(episode =>
+                <TableRowComponent
+                  key={episode.id}
+                  episode={episode}
+                />
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+      {noResults && (
+        <NoResultComponent />
+      )}
     </>
   );
 };

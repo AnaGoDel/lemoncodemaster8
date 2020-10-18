@@ -9,12 +9,13 @@ import {
   TableRow,
 } from "@material-ui/core";
 import { TableRowComponent } from './components/table-row.component';
-import { PaginationComponent, FilterComponent } from 'common/components';
+import { PaginationComponent, FilterComponent, NoResultComponent } from 'common/components';
 import { PaginationInfo } from 'common/components';
 import * as classes from './location-list.styles';
 
 interface Props {
   locationsList: LocationEntityVM[];
+  noResults: boolean,
   onNextPage: () => void;
   onPreviousPage: () => void;
   paginationInfo: PaginationInfo;
@@ -26,12 +27,13 @@ interface Props {
 export const EpisodeListComponent: React.FC<Props> = (props) => {
   const {
     locationsList,
+    noResults,
     onNextPage,
     onPreviousPage,
     paginationInfo,
     currentPage,
     label,
-    onFilter
+    onFilter,
   } = props;
 
   return (
@@ -48,25 +50,30 @@ export const EpisodeListComponent: React.FC<Props> = (props) => {
           currentPage={currentPage}
         />
       </div>
-      <TableContainer>
-        <Table>
-          <TableHead className={classes.header}>
-            <TableRow>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Dimension</TableCell>
-              <TableCell align="center">Type</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {locationsList.map(location =>
-              <TableRowComponent
-                key={location.id}
-                location={location}
-              />
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {!noResults && (
+        <TableContainer>
+          <Table>
+            <TableHead className={classes.header}>
+              <TableRow>
+                <TableCell align="center">Name</TableCell>
+                <TableCell align="center">Dimension</TableCell>
+                <TableCell align="center">Type</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {locationsList.map(location =>
+                <TableRowComponent
+                  key={location.id}
+                  location={location}
+                />
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+      {noResults && (
+        <NoResultComponent />
+      )}
     </>
   );
 };
