@@ -20,5 +20,5 @@ export const save = (recipe: Recipe): Promise<string> => {
 
 const saveRecipeByIndex = (index: number, recipe: Recipe): Promise<string> => {
     recipes = [...recipes.slice(0, index), recipe, ...recipes.slice(index + 1)];
-    return Promise.resolve('Save recipe success');
+    return Promise.resolve('Save recipe successfully');
 };

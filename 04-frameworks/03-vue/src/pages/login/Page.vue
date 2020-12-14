@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from "vue";
+import Vue from "vue";
 import { CenterLayout } from "../../common/layouts";
 import { FormComponent } from "./components";
 import { FormProps } from "./formProps";

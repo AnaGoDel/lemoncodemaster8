@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions, VueConstructor } from "vue";
+import Vue, { VueConstructor } from "vue";
 import { FormProps } from "../formProps";
 import { ResultLoginError } from "../viewModel";
 
