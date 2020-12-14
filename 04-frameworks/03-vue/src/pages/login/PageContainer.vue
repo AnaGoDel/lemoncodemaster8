@@ -44,20 +44,26 @@ export default Vue.extend({
           const loginApiModel = mapLoginVMToApiModel(this.login);
           loginRequest(loginApiModel)
             .then(() => {
+              this.$store.dispatch("setSnackbar", {
+                text: `Welcome to our Recipe list web, ${this.login.name}!`,
+              });
               this.$router.push(baseRoutes.recipe);
             })
             .catch((error) =>
-              alert(
-                `Este mensaje debes implementarlo con el componente Snackbar de Vuetify  ;) => ${error}`
-              )
+              this.$store.dispatch("setSnackbar", {
+                color: "error",
+                text: "Invalid user",
+              })
             );
         } else {
-          console.log("PageContainer.vue: Aqui viene el error");
-          console.log({ result });
           this.loginError = {
             ...this.loginError,
             ...result.fieldErrors,
           };
+          this.$store.dispatch("setSnackbar", {
+            color: "error",
+            text: "Please, enter name and password to log in",
+          });
         }
       });
     },

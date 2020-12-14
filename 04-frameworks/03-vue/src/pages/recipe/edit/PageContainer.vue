@@ -48,13 +48,29 @@ export default Vue.extend({
       this.validateRecipeField(field, value);
     },
     onSave() {
-      const recipe = mapRecipeVMToApi(this.recipe);
-      save(recipe)
-        .then((message) => {
-          console.log(message);
-          this.$router.back();
-        })
-        .catch((error) => console.log(error));
+      validations.validateForm(this.recipe).then((result) => {
+        if (result.succeeded) {
+          const recipe = mapRecipeVMToApi(this.recipe);
+          save(recipe)
+            .then((message) => {
+              this.$store.dispatch("setSnackbar", {
+                text: message,
+              });
+              this.$router.back();
+            })
+            .catch((error) =>
+              this.$store.dispatch("setSnackbar", {
+                color: "error",
+                text: "Failed to save the recipe",
+              })
+            );
+        } else {
+          this.$store.dispatch("setSnackbar", {
+            color: "error",
+            text: "Please, complete all required fields",
+          });
+        }
+      });
     },
     onAddIngredient(ingredient: string) {
       console.log(`Add ${ingredient}`);
@@ -65,7 +81,10 @@ export default Vue.extend({
         };
         this.validateRecipeField("ingredients", this.recipe.ingredients);
       } else {
-        this.validateRecipeField("ingredient", ingredient);
+        this.$store.dispatch("setSnackbar", {
+          color: "error",
+          text: "Enter an ingredient to add, please",
+        });
       }
     },
     onRemoveIngredient(ingredient: string) {
@@ -88,7 +107,6 @@ export default Vue.extend({
         ...this.recipeError,
         [field]: result,
       };
-      console.log(this.recipeError);
     },
   },
 });

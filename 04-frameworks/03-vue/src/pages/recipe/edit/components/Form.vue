@@ -1,5 +1,5 @@
 <template>
-  <v-form>
+  <v-form ref="form" v-model="valid">
     <v-text-field
       filled
       label="Name"
@@ -14,12 +14,6 @@
       append-icon="add"
       v-model="ingredient"
       @click:append="onAddIngredient(ingredient)"
-    />
-
-    <snackbar-component
-      v-if="!recipeError.ingredient.succeeded"
-      :show-snackbar="!recipeError.ingredient.succeeded"
-      :text="recipeError.ingredient.message"
     />
 
     <v-alert
@@ -47,15 +41,20 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { VueConstructor } from "vue";
 import { FormProps } from "../formProps";
 import { ResultRecipeError } from "../viewModel";
 import IngredientsList from "./IngredientsList.vue";
-import SnackbarComponent from "../../../../common/components/Snackbar.vue";
 
-export default Vue.extend({
+interface Refs {
+  $refs: {
+    form: HTMLFormElement;
+  };
+}
+
+export default (Vue as VueConstructor<Vue & Refs>).extend({
   name: "FormComponent",
-  components: { IngredientsList, SnackbarComponent },
+  components: { IngredientsList },
   props: {
     recipe: { required: true },
     recipeError: { required: true },
@@ -67,7 +66,7 @@ export default Vue.extend({
   data() {
     return {
       ingredient: "",
-      snackbar: true,
+      valid: true,
     };
   },
   computed: {
@@ -81,6 +80,12 @@ export default Vue.extend({
         }),
         {} as ResultRecipeError
       );
+    },
+  },
+  methods: {
+    handleOnClick() {
+      this.$refs.form.validate();
+      this.onSave();
     },
   },
 });
