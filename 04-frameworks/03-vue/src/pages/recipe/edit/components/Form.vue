@@ -1,5 +1,6 @@
 <template>
   <v-form ref="form" v-model="valid">
+    <v-img :src="recipe.image" :max-height="150"></v-img>
     <v-text-field
       filled
       label="Name"

@@ -5,6 +5,7 @@ export interface RecipeVM {
     name: string;
     description: string;
     ingredients: string[];
+    image: string;
 };
 
 export const createEmptyRecipe = (): RecipeVM => ({
@@ -12,6 +13,7 @@ export const createEmptyRecipe = (): RecipeVM => ({
     name: "",
     description: "",
     ingredients: [],
+    image: "",
 });
 
 export type ResultRecipeError = Record<keyof RecipeError, boolean | string>;
