@@ -11,6 +11,7 @@ export const mockRecipes: Recipe[] = [
        4. Using a spatula, ease around the edges of the omelette, then fold it over in half. When it starts to turn golden brown underneath, remove the pan from the heat and slide the omelette on to a plate.
       `,
         ingredients: ['2 eggs', 'cheese', 'salt', 'black pepper'],
+        image: "https://st.depositphotos.com/1030624/2429/i/600/depositphotos_24294999-stock-photo-omelette-with-salad.jpg",
     },
     {
         id: 2,
@@ -30,6 +31,7 @@ export const mockRecipes: Recipe[] = [
             'salt',
             'pepper',
         ],
+        image: "https://st.depositphotos.com/1004373/1268/i/950/depositphotos_12682057-stock-photo-fresh-salad.jpg",
     },
     {
         id: 3,
@@ -49,5 +51,6 @@ export const mockRecipes: Recipe[] = [
             'oregano',
             'salt',
         ],
+        image: "https://st.depositphotos.com/2251655/2554/i/950/depositphotos_25547297-stock-photo-spaghetti-with-tomato-sauce-and.jpg",
     },
 ];
